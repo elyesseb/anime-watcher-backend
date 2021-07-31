@@ -38,4 +38,10 @@ public class AnimeController {
         return repository.findById(id)
                 .orElseThrow(() -> new AnimeNotFoundException(id));
     }
+
+    @GetMapping("/getAnimeByTitle/{title}")
+    List<Anime> getAnimeByTitle(@PathVariable String title) {
+        return repository.findByTitleLike("%"+title+"%");
+    }
+
 }

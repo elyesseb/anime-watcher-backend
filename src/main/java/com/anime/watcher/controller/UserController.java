@@ -48,7 +48,7 @@ public class UserController {
 
     @GetMapping("/getUserbyUsername/{username}")
     User getUserByName(@PathVariable String username) {
-        final List<User> users = repository.findRegisteredUser_username(username);
+        final List<User> users = repository.findByUsername(username);
         if(users.isEmpty()){
             throw new UserNotFoundException(username);
         }
