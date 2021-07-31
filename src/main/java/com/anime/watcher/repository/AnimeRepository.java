@@ -1,18 +1,13 @@
 package com.anime.watcher.repository;
 
-import com.anime.watcher.model.User;
+import com.anime.watcher.model.Anime;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @author sei3
  * on 31/07/2021.
  */
 @Service
-public interface UserRepository extends CrudRepository<User, Long> {
-
-    List<User> findRegisteredUser_username(String username);
-
+public interface AnimeRepository extends CrudRepository<Anime, Long> {
 }

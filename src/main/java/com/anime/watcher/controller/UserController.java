@@ -45,4 +45,13 @@ public class UserController {
         return repository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));
     }
+
+    @GetMapping("/getUserbyUsername/{username}")
+    User getUserByName(@PathVariable String username) {
+        final List<User> users = repository.findRegisteredUser_username(username);
+        if(users.isEmpty()){
+            throw new UserNotFoundException(username);
+        }
+        return users.get(0);
+    }
 }
