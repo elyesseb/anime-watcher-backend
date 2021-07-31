@@ -1,4 +1,4 @@
-package com.example.animewatcherbackend;
+package com.anime.watcher.animewatcherbackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,5 +9,7 @@ public class AnimeWatcherBackendApplication {
     public static void main(String[] args) {
         SpringApplication.run(AnimeWatcherBackendApplication.class, args);
     }
+
+
 
 }

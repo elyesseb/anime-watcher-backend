@@ -8,7 +8,7 @@
         <version>2.5.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
+    <groupId>com.anime.watcher</groupId>
     <artifactId>anime-watcher-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>anime-watcher-backend</name>
@@ -35,6 +35,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.20</version>
         </dependency>
     </dependencies>
 
