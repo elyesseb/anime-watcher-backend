@@ -5,11 +5,7 @@ import com.anime.watcher.model.User;
 import com.anime.watcher.repository.UserRepository;
 import org.apache.commons.collections4.IterableUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,7 +13,7 @@ import java.util.List;
  * @author sei3
  * on 31/07/2021.
  */
-@Controller
+@RestController
 @RequestMapping(path="/user")
 public class UserController {
 

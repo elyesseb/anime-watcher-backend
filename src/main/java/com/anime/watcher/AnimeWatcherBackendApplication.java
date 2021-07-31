@@ -1,4 +1,4 @@
-package com.anime.watcher.animewatcherbackend;
+package com.anime.watcher;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
