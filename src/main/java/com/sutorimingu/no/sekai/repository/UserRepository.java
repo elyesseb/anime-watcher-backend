@@ -1,6 +1,6 @@
-package com.anime.watcher.repository;
+package com.sutorimingu.no.sekai.repository;
 
-import com.anime.watcher.model.User;
+import com.sutorimingu.no.sekai.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 

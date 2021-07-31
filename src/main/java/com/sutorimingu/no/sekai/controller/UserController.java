@@ -1,8 +1,8 @@
-package com.anime.watcher.controller;
+package com.sutorimingu.no.sekai.controller;
 
-import com.anime.watcher.exceptions.UserNotFoundException;
-import com.anime.watcher.model.User;
-import com.anime.watcher.repository.UserRepository;
+import com.sutorimingu.no.sekai.exceptions.UserNotFoundException;
+import com.sutorimingu.no.sekai.model.User;
+import com.sutorimingu.no.sekai.repository.UserRepository;
 import org.apache.commons.collections4.IterableUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

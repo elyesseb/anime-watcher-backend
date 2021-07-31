@@ -1,13 +1,13 @@
-package com.anime.watcher;
+package com.sutorimingu.no.sekai;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AnimeWatcherBackendApplication {
+public class SutoriminguNoSekaiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AnimeWatcherBackendApplication.class, args);
+        SpringApplication.run(SutoriminguNoSekaiApplication.class, args);
     }
 
 

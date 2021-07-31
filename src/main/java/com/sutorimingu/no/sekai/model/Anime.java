@@ -1,4 +1,4 @@
-package com.anime.watcher.model;
+package com.sutorimingu.no.sekai.model;
 
 import lombok.Getter;
 import lombok.Setter;

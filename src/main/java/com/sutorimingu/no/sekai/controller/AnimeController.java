@@ -1,8 +1,8 @@
-package com.anime.watcher.controller;
+package com.sutorimingu.no.sekai.controller;
 
-import com.anime.watcher.exceptions.AnimeNotFoundException;
-import com.anime.watcher.model.Anime;
-import com.anime.watcher.repository.AnimeRepository;
+import com.sutorimingu.no.sekai.exceptions.AnimeNotFoundException;
+import com.sutorimingu.no.sekai.model.Anime;
+import com.sutorimingu.no.sekai.repository.AnimeRepository;
 import org.apache.commons.collections4.IterableUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

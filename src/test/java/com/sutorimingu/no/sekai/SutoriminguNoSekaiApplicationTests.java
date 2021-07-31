@@ -1,10 +1,10 @@
-package com.anime.watcher.animewatcherbackend;
+package com.sutorimingu.no.sekai;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AnimeWatcherBackendApplicationTests {
+class SutoriminguNoSekaiApplicationTests {
 
     @Test
     void contextLoads() {

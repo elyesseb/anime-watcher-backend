@@ -1,4 +1,4 @@
-package com.anime.watcher.exceptions;
+package com.sutorimingu.no.sekai.exceptions;
 
 /**
  * @author sei3

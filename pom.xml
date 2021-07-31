@@ -8,8 +8,8 @@
         <version>2.5.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.anime.watcher</groupId>
-    <artifactId>anime-watcher-backend</artifactId>
+    <groupId>com.sutorimingu.no.sekai</groupId>
+    <artifactId>sutorimingu-no-sekai-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>anime-watcher-backend</name>
     <description>Demo project for Spring Boot</description>
