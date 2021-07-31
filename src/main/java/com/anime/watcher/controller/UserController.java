@@ -30,6 +30,7 @@ public class UserController {
 
     @PostMapping("/add")
     User newUser(@RequestBody User newUser) {
+        newUser.setIs_admin(false);
         return repository.save(newUser);
     }
 
@@ -39,8 +40,8 @@ public class UserController {
         return repository.save(newUser);
     }
 
-    @PostMapping("/getUserbyId/{id}")
-    User getUserById(@RequestBody Long id) {
+    @GetMapping("/getUserbyId/{id}")
+    User getUserById(@PathVariable Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));
     }
