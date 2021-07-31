@@ -1,1 +1,1 @@
-DROP DATABASE `sutorimingu-no-sekai_db`;
+DROP TABLE `anime`, `comment`, `episode`, `hibernate_sequence`, `user`;
