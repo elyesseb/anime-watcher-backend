@@ -15,5 +15,4 @@ public interface AnimeRepository extends CrudRepository<Anime, Long> {
 
     List<Anime> findByTitleLike(String title);
 
-    List<Anime> findByTitleLikeOrder(String title);
 }
