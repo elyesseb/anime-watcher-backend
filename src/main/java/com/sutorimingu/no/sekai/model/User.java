@@ -18,29 +18,30 @@ import java.util.Objects;
 public class User {
     @Id
     @GeneratedValue
-    private Long user_id;
+    private Long id;
     private Boolean is_admin;
     private String username;
     private String password;
     private String email;
+
 
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         final User user = (User) o;
-        return Objects.equals(getUser_id(), user.getUser_id()) && Objects.equals(getIs_admin(), user.getIs_admin()) && Objects.equals(getUsername(), user.getUsername()) && Objects.equals(getPassword(), user.getPassword()) && Objects.equals(getEmail(), user.getEmail());
+        return Objects.equals(getId(), user.getId()) && Objects.equals(getIs_admin(), user.getIs_admin()) && Objects.equals(getUsername(), user.getUsername()) && Objects.equals(getPassword(), user.getPassword()) && Objects.equals(getEmail(), user.getEmail());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getUser_id(), getIs_admin(), getUsername(), getPassword(), getEmail());
+        return Objects.hash(getId(), getIs_admin(), getUsername(), getPassword(), getEmail());
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "user_id=" + user_id +
+                "id=" + id +
                 ", is_admin=" + is_admin +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

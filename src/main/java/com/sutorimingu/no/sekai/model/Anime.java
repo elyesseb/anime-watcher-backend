@@ -19,7 +19,7 @@ import java.util.Objects;
 public class Anime {
     @Id
     @GeneratedValue
-    private Long anime_id;
+    private Long id;
     private String title;
     private String genre;
     private String synopsis;
@@ -32,18 +32,18 @@ public class Anime {
         if (this == o) return true;
         if (!(o instanceof Anime)) return false;
         final Anime anime = (Anime) o;
-        return Objects.equals(getAnime_id(), anime.getAnime_id()) && Objects.equals(getTitle(), anime.getTitle()) && Objects.equals(getGenre(), anime.getGenre()) && Objects.equals(getSynopsis(), anime.getSynopsis()) && Objects.equals(getAired(), anime.getAired()) && Objects.equals(getEnded(), anime.getEnded()) && Objects.equals(getRating(), anime.getRating());
+        return Objects.equals(getId(), anime.getId()) && Objects.equals(getTitle(), anime.getTitle()) && Objects.equals(getGenre(), anime.getGenre()) && Objects.equals(getSynopsis(), anime.getSynopsis()) && Objects.equals(getAired(), anime.getAired()) && Objects.equals(getEnded(), anime.getEnded()) && Objects.equals(getRating(), anime.getRating());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getAnime_id(), getTitle(), getGenre(), getSynopsis(), getAired(), getEnded(), getRating());
+        return Objects.hash(getId(), getTitle(), getGenre(), getSynopsis(), getAired(), getEnded(), getRating());
     }
 
     @Override
     public String toString() {
         return "Anime{" +
-                "anime_id=" + anime_id +
+                "id=" + id +
                 ", title='" + title + '\'' +
                 ", genre='" + genre + '\'' +
                 ", synopsis='" + synopsis + '\'' +
