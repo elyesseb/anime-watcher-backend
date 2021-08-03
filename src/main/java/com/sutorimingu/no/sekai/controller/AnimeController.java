@@ -13,6 +13,7 @@ import java.util.List;
  * @author sei3
  * on 31/07/2021.
  */
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(path="/anime")
 public class AnimeController {
