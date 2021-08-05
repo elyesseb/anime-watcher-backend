@@ -5,9 +5,12 @@ import com.sutorimingu.no.sekai.model.Anime;
 import com.sutorimingu.no.sekai.repository.AnimeRepository;
 import org.apache.commons.collections4.IterableUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author sei3
@@ -43,6 +46,34 @@ public class AnimeController {
     @GetMapping("/getAnimeByTitle/{title}")
     List<Anime> getAnimeByTitle(@PathVariable String title) {
         return repository.findByTitleLike("%"+title+"%");
+    }
+
+    @PutMapping("/getAnimeById/{id}")
+    public ResponseEntity<Anime> updateAnime(@PathVariable("id") long id, @RequestBody Anime anime) {
+        Optional<Anime> animeData = repository.findById(id);
+
+        if (animeData.isPresent()) {
+            Anime _anime = animeData.get();
+            _anime.setTitle(anime.getTitle());
+            _anime.setGenre(anime.getGenre());
+            _anime.setSynopsis(anime.getSynopsis());
+            _anime.setAired(anime.getAired());
+            _anime.setEnded(anime.getEnded());
+            _anime.setRating(anime.getRating());
+            return new ResponseEntity<>(repository.save(_anime), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/getAnimeById/{id}")
+    public ResponseEntity<HttpStatus> deleteAnime(@PathVariable("id") long id) {
+        try {
+            repository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
