@@ -1,12 +1,3 @@
-CREATE TABLE `user` (
-	`id` BIGINT NOT NULL AUTO_INCREMENT,
-	`is_admin` BOOLEAN NOT NULL,
-	`username` varchar(255) NOT NULL UNIQUE,
-	`password` varchar(255) NOT NULL,
-	`email` varchar(255) NOT NULL UNIQUE,
-	PRIMARY KEY (`id`)
-)ENGINE=InnoDB;
-
 CREATE TABLE `comment` (
 	`id` BIGINT NOT NULL AUTO_INCREMENT,
 	`message` varchar(255) NOT NULL,
@@ -36,8 +27,6 @@ CREATE TABLE `episode` (
 	`air_date` DATE,
 	PRIMARY KEY (`id`)
 )ENGINE=InnoDB;
-
-ALTER TABLE `comment` ADD CONSTRAINT `comment_fk0` FOREIGN KEY (`creator_id`) REFERENCES `user`(`id`);
 
 ALTER TABLE `comment` ADD CONSTRAINT `comment_fk1` FOREIGN KEY (`anime_id`) REFERENCES `anime`(`id`);
 

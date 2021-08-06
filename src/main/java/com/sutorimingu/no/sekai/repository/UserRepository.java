@@ -1,20 +1,19 @@
 package com.sutorimingu.no.sekai.repository;
 
 import com.sutorimingu.no.sekai.model.User;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import java.util.Optional;
 
 /**
  * @author sei3
  * on 31/07/2021.
  */
-@Service
-public interface UserRepository extends CrudRepository<User, Long> {
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByUsername(String username);
 
-    List<User> findByUsername(String username);
+    Boolean existsByUsername(String username);
 
-    List<User> findByEmail(String email);
-
+    Boolean existsByEmail(String email);
 }
