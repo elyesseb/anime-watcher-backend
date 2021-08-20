@@ -60,6 +60,7 @@ public class AnimeController {
             _anime.setAired(anime.getAired());
             _anime.setEnded(anime.getEnded());
             _anime.setRating(anime.getRating());
+            _anime.setFileDB(anime.getFileDB());
             return new ResponseEntity<>(repository.save(_anime), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -5,14 +5,15 @@ package com.sutorimingu.no.sekai.model;
  * on 07/08/2021.
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+@Data
+@AllArgsConstructor
 @Entity
 @Table(name = "files")
 public class FileDB {
@@ -27,6 +28,11 @@ public class FileDB {
 
     @Lob
     private byte[] data;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JoinColumn(name = "anime_id")
+    public Anime anime;
 
     public FileDB() {
     }

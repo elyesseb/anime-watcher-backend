@@ -1,11 +1,9 @@
 package com.sutorimingu.no.sekai.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -14,8 +12,7 @@ import java.util.Objects;
  * on 31/07/2021.
  */
 @Entity
-@Getter
-@Setter
+@Data
 public class Anime {
     @Id
     @GeneratedValue
@@ -27,17 +24,22 @@ public class Anime {
     private Date ended;
     private Float rating;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JoinColumn(name = "files_id")
+    public FileDB fileDB;
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (!(o instanceof Anime)) return false;
         final Anime anime = (Anime) o;
-        return Objects.equals(getId(), anime.getId()) && Objects.equals(getTitle(), anime.getTitle()) && Objects.equals(getGenre(), anime.getGenre()) && Objects.equals(getSynopsis(), anime.getSynopsis()) && Objects.equals(getAired(), anime.getAired()) && Objects.equals(getEnded(), anime.getEnded()) && Objects.equals(getRating(), anime.getRating());
+        return Objects.equals(getId(), anime.getId()) && Objects.equals(getTitle(), anime.getTitle()) && Objects.equals(getGenre(), anime.getGenre()) && Objects.equals(getSynopsis(), anime.getSynopsis()) && Objects.equals(getAired(), anime.getAired()) && Objects.equals(getEnded(), anime.getEnded()) && Objects.equals(getRating(), anime.getRating()) && Objects.equals(getFileDB(), anime.getFileDB());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getTitle(), getGenre(), getSynopsis(), getAired(), getEnded(), getRating());
+        return Objects.hash(getId(), getTitle(), getGenre(), getSynopsis(), getAired(), getEnded(), getRating(), getFileDB());
     }
 
     @Override
@@ -50,6 +52,7 @@ public class Anime {
                 ", aired=" + aired +
                 ", ended=" + ended +
                 ", rating=" + rating +
+                ", fileDB=" + fileDB +
                 '}';
     }
 }

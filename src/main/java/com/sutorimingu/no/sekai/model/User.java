@@ -1,7 +1,6 @@
 package com.sutorimingu.no.sekai.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -14,8 +13,7 @@ import java.util.Set;
  * @author sei3
  * on 31/07/2021.
  */
-@Getter
-@Setter
+@Data
 @Entity
 @Table(	name = "users",
         uniqueConstraints = {
