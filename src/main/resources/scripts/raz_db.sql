@@ -1,1 +1,1 @@
-DROP TABLE `anime`, `comment`, `episode`, `hibernate_sequence`, `user`;
+DROP TABLE `files`, `comment`, `episode`,`anime`, `hibernate_sequence`,`user_roles`, `users`,`roles`;

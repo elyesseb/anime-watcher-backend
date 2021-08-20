@@ -15,10 +15,11 @@ import java.util.Objects;
 @Data
 public class Anime {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String genre;
+    @Column(columnDefinition="TEXT")
     private String synopsis;
     private Date aired;
     private Date ended;

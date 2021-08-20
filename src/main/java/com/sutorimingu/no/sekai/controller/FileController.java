@@ -1,10 +1,9 @@
 package com.sutorimingu.no.sekai.controller;
 
-import com.sutorimingu.no.sekai.model.Anime;
 import com.sutorimingu.no.sekai.model.FileDB;
 import com.sutorimingu.no.sekai.payload.response.MessageResponse;
 import com.sutorimingu.no.sekai.payload.response.ResponseFile;
-import com.sutorimingu.no.sekai.repository.AnimeRepository;
+import com.sutorimingu.no.sekai.service.AnimeService;
 import com.sutorimingu.no.sekai.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -16,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -31,25 +29,13 @@ public class FileController {
     private FileStorageService storageService;
 
     @Autowired
-    private AnimeRepository animeRepo;
+    private AnimeService animeeService;
 
     @PostMapping("/upload")
     public ResponseEntity<MessageResponse> uploadFile(@RequestParam("file") MultipartFile file,@RequestParam("anime_id") Long animeId) {
         String message = "";
         try {
-            final Optional<Anime> animeOpt = animeRepo.findById(animeId);
-
-            if(animeOpt.isPresent()){
-                final Anime anime = animeOpt.get();
-                final FileDB store = storageService.store(file);
-
-                anime.setFileDB(store);
-                animeRepo.save(anime);
-            }
-            else{
-                //TODO: ANIME NOT FOUND
-            }
-
+            animeeService.addPictureToAnime(file, animeId);
 
 
             message = "Uploaded the file successfully: " + file.getOriginalFilename();
@@ -59,6 +45,8 @@ public class FileController {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new MessageResponse(message));
         }
     }
+
+
 
     @GetMapping("/files")
     public ResponseEntity<List<ResponseFile>> getListFiles() {

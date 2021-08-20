@@ -1,7 +1,7 @@
 package com.sutorimingu.no.sekai.repository;
 
 import com.sutorimingu.no.sekai.model.Comment;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
  * on 31/07/2021.
  */
 @Service
-public interface CommentRepository extends CrudRepository<Comment, Long> {
+public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     List<Comment> findByAnime_Id(Long id);
 
