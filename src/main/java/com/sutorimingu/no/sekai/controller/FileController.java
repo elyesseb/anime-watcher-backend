@@ -1,8 +1,10 @@
 package com.sutorimingu.no.sekai.controller;
 
+import com.sutorimingu.no.sekai.model.Anime;
 import com.sutorimingu.no.sekai.model.FileDB;
 import com.sutorimingu.no.sekai.payload.response.MessageResponse;
 import com.sutorimingu.no.sekai.payload.response.ResponseFile;
+import com.sutorimingu.no.sekai.repository.AnimeRepository;
 import com.sutorimingu.no.sekai.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -14,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -27,11 +30,27 @@ public class FileController {
     @Autowired
     private FileStorageService storageService;
 
+    @Autowired
+    private AnimeRepository animeRepo;
+
     @PostMapping("/upload")
-    public ResponseEntity<MessageResponse> uploadFile(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<MessageResponse> uploadFile(@RequestParam("file") MultipartFile file,@RequestParam("anime_id") Long animeId) {
         String message = "";
         try {
-            storageService.store(file);
+            final Optional<Anime> animeOpt = animeRepo.findById(animeId);
+
+            if(animeOpt.isPresent()){
+                final Anime anime = animeOpt.get();
+                final FileDB store = storageService.store(file);
+
+                anime.setFileDB(store);
+                animeRepo.save(anime);
+            }
+            else{
+                //TODO: ANIME NOT FOUND
+            }
+
+
 
             message = "Uploaded the file successfully: " + file.getOriginalFilename();
             return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse(message));
