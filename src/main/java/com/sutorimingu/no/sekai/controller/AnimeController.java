@@ -16,7 +16,7 @@ import java.util.Optional;
  * @author sei3
  * on 31/07/2021.
  */
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin("*")
 @RestController
 @RequestMapping(path="/anime")
 public class AnimeController {

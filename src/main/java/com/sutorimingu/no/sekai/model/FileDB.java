@@ -34,7 +34,6 @@ public class FileDB {
     @JoinColumn(name = "anime_id")
     public Anime anime;
 
-
     public FileDB(final String name, final String type, final byte[] data) {
         this.name = name;
         this.type = type;
