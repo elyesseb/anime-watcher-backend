@@ -24,6 +24,7 @@ public class Comment {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "creator_id", nullable = false)
     public User creator;
+    @Column(columnDefinition="DATETIME")
     private Date post_date;
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
