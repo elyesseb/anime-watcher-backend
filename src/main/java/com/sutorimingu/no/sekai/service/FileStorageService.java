@@ -27,6 +27,11 @@ public class FileStorageService {
         return fileDBRepository.save(FileDB);
     }
 
+    public FileDB store(byte[] data, String filename) {
+        FileDB FileDB = new FileDB(filename, null, data);
+        return fileDBRepository.save(FileDB);
+    }
+
     public FileDB getFile(String id) {
         return fileDBRepository.findById(id).get();
     }
