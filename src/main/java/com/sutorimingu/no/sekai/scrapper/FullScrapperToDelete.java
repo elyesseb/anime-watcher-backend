@@ -42,7 +42,7 @@ public class FullScrapperToDelete {
     private final static Log TRACER = LogFactory.getLog(FullScrapperToDelete.class);
 
     public void scrapp() {
-        final String csvFile = "/Users/sei3/Downloads/anime-data/archive/animes.csv";
+        final String csvFile = "C:/Users/ely-b/Desktop/sutorimingu/animes.csv";
         try (final InputStream is = new FileInputStream(csvFile);
              final BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
              final CSVReader csvReader = new CSVReaderBuilder(reader).withCSVParser(new CSVParserBuilder().withSeparator(',').build()).build()) {

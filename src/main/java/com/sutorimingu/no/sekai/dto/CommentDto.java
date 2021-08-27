@@ -17,7 +17,7 @@ public class CommentDto {
     Date post_date;
 
 
-    public  CommentDto(Comment comment){
+    public CommentDto(Comment comment){
         if(comment.getCreator()!=null){
             this.username = comment.getCreator().getUsername();
         }
