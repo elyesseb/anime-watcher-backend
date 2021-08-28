@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
  * @author sei3
  * on 31/07/2021.
  */
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(path="/comment")
 public class CommentController {

@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * @author sei3
  * on 20/08/2021.
  */
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(path="/episode")
 public class EpisodeController {

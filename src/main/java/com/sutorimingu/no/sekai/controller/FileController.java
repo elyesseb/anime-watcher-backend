@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * on 07/08/2021.
  */
 @Controller
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class FileController {
 
     @Autowired

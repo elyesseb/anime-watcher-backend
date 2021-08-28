@@ -18,7 +18,7 @@ import java.util.Optional;
  * @author sei3
  * on 31/07/2021.
  */
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(path="/anime")
 public class AnimeController {
@@ -47,8 +47,8 @@ public class AnimeController {
     @GetMapping("/list")
     public ResponseEntity<List<Anime>> getAllAnimes(
             @RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "12093") Integer pageSize,
-            @RequestParam(defaultValue = "title") String sortBy)
+            @RequestParam(defaultValue = "1000") Integer pageSize,
+            @RequestParam(defaultValue = "rating") String sortBy)
     {
         List<Anime> list = animeService.getAllAnimes(pageNo, pageSize, sortBy);
 

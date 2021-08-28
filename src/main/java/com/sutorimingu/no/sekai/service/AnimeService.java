@@ -50,7 +50,7 @@ public class AnimeService {
 
     public List<Anime> getAllAnimes(Integer pageNo, Integer pageSize, String sortBy)
     {
-        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
 
         Page<Anime> pagedResult = animeRepository.findAll(paging);
 
