@@ -30,5 +30,4 @@ public class Comment {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "anime_id")
     public Anime anime;
-
 }

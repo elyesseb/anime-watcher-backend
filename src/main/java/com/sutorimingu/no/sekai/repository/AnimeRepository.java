@@ -12,7 +12,11 @@ import java.util.List;
  */
 @Service
 public interface AnimeRepository extends JpaRepository<Anime, Long> {
-
+    // Maintenant nous pouvons utiliser les méthodes de JpaRepository sans implémenter les méthodes
     List<Anime> findByTitleLike(String title);
-
+    // Méthode de recherche personnalisées
+    // SELECT * FROM anime
+    // WHERE title
+    // LIKE '%title%'
+    // '%title%' pour rechercher tous les enregistrement qui utilisent le caractère “title”.
 }

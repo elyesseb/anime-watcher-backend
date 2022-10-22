@@ -8,7 +8,7 @@ INSERT INTO `episode`(`anime_id`, `season`, `episode_nb`, `aired`) VALUES
 (1,2,1,'2015/11/10'),
 (1,2,2,'2015/11/10'),
 (1,2,5,'2015/11/10'),
-#NARUTO SHIPPU
+#NARUTO SHIPPUDEN
 (2,1,1,'2018/11/10'),
 (2,1,2,'2018/11/10'),
 (2,2,1,'2019/11/10'),

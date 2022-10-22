@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -41,19 +43,16 @@ public class AnimeService {
             final FileDB store = storageService.store(file);
 
             anime.setFileDB(store);
-            animeRepository.save(anime);
+            new ResponseEntity<>(animeRepository.save(anime), HttpStatus.OK);
         }
         else{
-            //TODO: ANIME NOT FOUND
+            new ResponseEntity<Anime>(HttpStatus.NOT_FOUND);
         }
     }
 
-    public List<Anime> getAllAnimes(Integer pageNo, Integer pageSize, String sortBy)
-    {
+    public List<Anime> getAllAnimes(Integer pageNo, Integer pageSize, String sortBy){
         Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
-
         Page<Anime> pagedResult = animeRepository.findAll(paging);
-
         if(pagedResult.hasContent()) {
             return pagedResult.getContent();
         } else {

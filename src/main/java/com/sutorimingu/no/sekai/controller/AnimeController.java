@@ -3,12 +3,13 @@ package com.sutorimingu.no.sekai.controller;
 import com.sutorimingu.no.sekai.exceptions.AnimeNotFoundException;
 import com.sutorimingu.no.sekai.model.Anime;
 import com.sutorimingu.no.sekai.repository.AnimeRepository;
-import com.sutorimingu.no.sekai.scrapper.FullScrapperToDelete;
+import com.sutorimingu.no.sekai.repository.EpisodeRepository;
 import com.sutorimingu.no.sekai.service.AnimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,17 +28,20 @@ public class AnimeController {
     private AnimeRepository repository;
 
     @Autowired
-    private FullScrapperToDelete scrapper;
+    private EpisodeRepository episodeRepository;
+
+//    @Autowired
+//    private FullScrapperToDelete scrapper;
 
     @Autowired
     private AnimeService animeService;
 
 
-    @GetMapping("/scrap")
-    String scrap() {
-        scrapper.scrapp();
-        return "OK";
-    }
+//    @GetMapping("/scrap")
+//    String scrap() {
+//        scrapper.scrapp();
+//        return "OK";
+//    }
 
 //    @GetMapping("/list")
 //    List<Anime> all() {
@@ -47,35 +51,31 @@ public class AnimeController {
     @GetMapping("/list")
     public ResponseEntity<List<Anime>> getAllAnimes(
             @RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "1000") Integer pageSize,
+            @RequestParam(defaultValue = "11013") Integer pageSize,
             @RequestParam(defaultValue = "rating") String sortBy)
     {
         List<Anime> list = animeService.getAllAnimes(pageNo, pageSize, sortBy);
 
         return new ResponseEntity<List<Anime>>(list, new HttpHeaders(), HttpStatus.OK);
     }
-
     @PostMapping("/add")
-    Anime newUser(@RequestBody Anime newAnime) {
+    @PreAuthorize("hasRole('ADMIN')")
+    Anime addAnime(@RequestBody Anime newAnime) {
         return repository.save(newAnime);
     }
-
-
     @GetMapping("/getAnimeById/{id}")
     Anime getAnimeById(@PathVariable Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new AnimeNotFoundException(id));
     }
-
     @GetMapping("/getAnimeByTitle/{title}")
     List<Anime> getAnimeByTitle(@PathVariable String title) {
         return repository.findByTitleLike("%"+title+"%");
     }
-
     @PutMapping("/getAnimeById/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Anime> updateAnime(@PathVariable("id") long id, @RequestBody Anime anime) {
         Optional<Anime> animeData = repository.findById(id);
-
         if (animeData.isPresent()) {
             Anime _anime = animeData.get();
             _anime.setTitle(anime.getTitle());
@@ -90,8 +90,8 @@ public class AnimeController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
     @DeleteMapping("/getAnimeById/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteAnime(@PathVariable("id") long id) {
         try {
             repository.deleteById(id);
@@ -100,5 +100,4 @@ public class AnimeController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 }

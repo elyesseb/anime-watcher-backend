@@ -5,6 +5,7 @@ package com.sutorimingu.no.sekai.model;
  * on 07/08/2021.
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,14 +22,15 @@ public class FileDB {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
-
+    @JsonIgnore
     private String name;
-
+    @JsonIgnore
     private String type;
 
     @Lob
+    @JsonIgnore
     private byte[] data;
-
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "anime_id")
