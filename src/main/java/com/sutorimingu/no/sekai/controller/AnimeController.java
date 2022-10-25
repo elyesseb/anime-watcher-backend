@@ -21,7 +21,7 @@ import java.util.Optional;
  */
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping(path="/anime")
+@RequestMapping(path = "/anime")
 public class AnimeController {
 
     @Autowired
@@ -52,26 +52,33 @@ public class AnimeController {
     public ResponseEntity<List<Anime>> getAllAnimes(
             @RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "11013") Integer pageSize,
-            @RequestParam(defaultValue = "rating") String sortBy)
-    {
+            @RequestParam(defaultValue = "rating") String sortBy) {
         List<Anime> list = animeService.getAllAnimes(pageNo, pageSize, sortBy);
 
         return new ResponseEntity<List<Anime>>(list, new HttpHeaders(), HttpStatus.OK);
     }
+
     @PostMapping("/add")
     @PreAuthorize("hasRole('ADMIN')")
     Anime addAnime(@RequestBody Anime newAnime) {
         return repository.save(newAnime);
     }
+
     @GetMapping("/getAnimeById/{id}")
-    Anime getAnimeById(@PathVariable Long id) {
+    public Anime getAnimeById(@PathVariable Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new AnimeNotFoundException(id));
     }
+
     @GetMapping("/getAnimeByTitle/{title}")
     List<Anime> getAnimeByTitle(@PathVariable String title) {
-        return repository.findByTitleLike("%"+title+"%");
+        List<Anime> animeData = repository.findByTitleLike(title);
+        if (animeData.isEmpty()) {
+            new AnimeNotFoundException(title);
+        }
+        return repository.findByTitleLike("%" + title + "%");
     }
+
     @PutMapping("/getAnimeById/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Anime> updateAnime(@PathVariable("id") long id, @RequestBody Anime anime) {
@@ -90,6 +97,7 @@ public class AnimeController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
     @DeleteMapping("/getAnimeById/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteAnime(@PathVariable("id") long id) {
