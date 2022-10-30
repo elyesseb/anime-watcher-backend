@@ -6,10 +6,6 @@ import lombok.Data;
 
 import java.sql.Date;
 
-/**
- * @author sei3
- * on 20/08/2021.
- */
 @Data
 public class EpisodeDto {
     private Long id;
@@ -21,7 +17,7 @@ public class EpisodeDto {
     public EpisodeDto(Episode episode) {
         this.id = episode.getId();
         this.season = episode.getSeason();
-        this.episodeNb = episode.getSeason();
+        this.episodeNb = episode.getEpisodeNb();
         this.aired = episode.getAired();
         final Anime anime = episode.getAnime();
         if (anime != null) {

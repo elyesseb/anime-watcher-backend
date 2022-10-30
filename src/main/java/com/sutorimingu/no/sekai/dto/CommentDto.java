@@ -5,10 +5,6 @@ import lombok.Data;
 
 import java.sql.Date;
 
-/**
- * @author sei3
- * on 20/08/2021.
- */
 @Data
 public class CommentDto {
 

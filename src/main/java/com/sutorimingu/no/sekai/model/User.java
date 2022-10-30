@@ -10,10 +10,6 @@ import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * @author sei3
- * on 31/07/2021.
- */
 @Data
 @Entity
 @Table(	name = "users",

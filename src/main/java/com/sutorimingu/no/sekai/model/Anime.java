@@ -6,12 +6,6 @@ import lombok.*;
 import javax.persistence.*;
 import java.sql.Date;
 
-/**
- * @author sei3
- * on 31/07/2021.
- */
-
-
 @Entity
 // Indique que la classe est une classe Java persistante
 @Data

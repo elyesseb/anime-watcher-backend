@@ -7,10 +7,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.sql.Date;
 
-/**
- * @author sei3
- * on 31/07/2021.
- */
 @Entity
 @Getter
 @Setter

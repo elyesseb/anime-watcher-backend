@@ -22,10 +22,6 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Locale;
 
-/**
- * @author sei3
- * on 25/08/2021.
- */
 @Service
 public class FullScrapperToDelete {
 

@@ -9,10 +9,6 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
 
-/**
- * @author sei3
- * on 20/08/2021.
- */
 @Entity
 @Data
 @AllArgsConstructor

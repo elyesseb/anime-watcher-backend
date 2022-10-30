@@ -19,10 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * @author sei3
- * on 20/08/2021.
- */
 @Service
 public class AnimeService {
 

@@ -9,15 +9,12 @@ import com.sutorimingu.no.sekai.service.AnimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @author sei3
- * on 20/08/2021.
- */
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(path="/episode")
@@ -41,6 +38,7 @@ public class EpisodeController {
                 .orElseThrow(() -> new AnimeNotFoundException(id));
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
     Episode addEpisode(@RequestParam("anime_id") Long animeId, @RequestBody Episode newEpisode) {
         newEpisode.setAnime(animeRepository.getReferenceById(animeId));
