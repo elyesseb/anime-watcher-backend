@@ -2,6 +2,7 @@ package com.sutorimingu.no.sekai.controller;
 
 import com.sutorimingu.no.sekai.exceptions.AnimeNotFoundException;
 import com.sutorimingu.no.sekai.model.Anime;
+import com.sutorimingu.no.sekai.model.Episode;
 import com.sutorimingu.no.sekai.repository.AnimeRepository;
 import com.sutorimingu.no.sekai.repository.EpisodeRepository;
 import com.sutorimingu.no.sekai.service.AnimeService;
@@ -98,6 +99,11 @@ public class AnimeController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteAnime(@PathVariable("id") long id) {
         try {
+            Optional<Anime> anime = repository.findById(id);
+            List<Episode> episodes = episodeRepository.findAllByAnime(anime.get());
+            for (Episode episode:episodes) {
+                episodeRepository.delete(episode);
+            }
             repository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
